@@ -14,11 +14,11 @@
 ## 클래스 개요
 |No.|클래스|내용|
 |-|-|-|
-|1|User|게임 플레이어 클래스|
-|2|Aset|오목 한판에 대한 정보를 가지는 클래스|
+|1|User|게임 플레이어가 게임을 하기 위한 클래스를 모아놓은 클래스|
+|2|Aset|오목 한 게임에 대한 정보를 가지는 클래스|
 |3|GameProcessor|게임 플레이를 위한 클래스|
 |4|LeeSedol|컴퓨터와 대결을 위한 클래스|
-|5|StartPage|게임 시작, 끝 화면|
+|5|StartPage|게임 시작, 끝 화면을 보여주기 위한 클래스|
 |6|Core|콘솔 관련 기능 클래스|
 
 </br>
@@ -62,7 +62,7 @@
 ### 멤버함수
 |타입|함수명|내용|
 |-|-|-|
-|void|setBoard|GameProcessor 클래스의 포인터 (* Board)[SIZE]에 Aset 클래스의 멤버변수 Board를 저장하는 함수|
+|void|setBoard|멤버변수 (* Board)[SIZE]에 Aset 클래스의 멤버변수 Board를 저장하는 함수|
 |void|putStone|바둑돌을 위치시키는 함수|
 |void|drawBoard|바둑판을 그리는 함수|
 |int|isEnd|연속된 5개의 돌이 있는지 확인하여 게임이 끝났는지 판단하는 함수|
@@ -85,7 +85,7 @@
 ### 멤버함수
 |타입|함수명|내용|
 |-|-|-|
-|void|setBoard|LeeSedol|클래스의 포인터 (* Board)[SIZE]에 Aset 클래스의 멤버변수 Board를 저장하는 함수|
+|void|setBoard|LeeSedol|멤버변수 (* Board)[SIZE]에 Aset 클래스의 멤버변수 Board를 저장하는 함수|
 |pair<int,int>|computerTurn|바둑돌을 두기 위한 최적의 위치를 찾는 함수</br> 바둑돌 위치를 반환하고, 이를 그리는것은 GameProcessor 객체가 수행|
 |void|gameForLevel_1|가중치를 계산하기 위한 함수(레벨1)|
 |void|gameForLevel_2|가중치를 계산하기 위한 함수(레벨2)|
