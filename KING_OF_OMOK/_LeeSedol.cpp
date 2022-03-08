@@ -5,8 +5,7 @@
 void _LeeSedol::initLSDBoard() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            weightBoard[i][j] = 0;
-            savedBoard[i][j] = -1;
+            weightBoard[i][j] = 0; 
         }
     }
 }

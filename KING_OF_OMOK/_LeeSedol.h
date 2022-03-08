@@ -6,8 +6,7 @@ class gamePlay;
 static class _LeeSedol {
 
 private:
-    int(*Board)[SIZE];
-    int savedBoard[SIZE][SIZE];
+    int(*Board)[SIZE]; 
     int weightBoard[SIZE][SIZE];
    
     const int INF = 99999999;

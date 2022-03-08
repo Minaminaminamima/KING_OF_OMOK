@@ -6,7 +6,7 @@
 using namespace std;
 
 
-#define ADMIN_LEVEL 0; // default is 0 
+#define ADMIN_LEVEL 1; // default is 0 
 #define SIZE 15
 #define ENTER 13
 #define UP 72

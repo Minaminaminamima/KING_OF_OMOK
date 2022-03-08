@@ -26,8 +26,7 @@ bool _User::doGame() {
     ptrGP->initGame();
     int level = ADMIN_LEVEL;   
 
-start:
-    level++;
+start: 
     initGame(level);
     bool user = true;
     bool winner = !user;
@@ -58,7 +57,7 @@ start:
  
     string str;
     if (winner == user) {
-        str = "You Win!\nNext level is " + to_string(level + 1) + ".\nproceed?";
+        str = "You Win!\nNext level is " + to_string(++level) + ".\nproceed?";
     } 
     else {
         str = "You loseee.\nDo you play again?";
