@@ -6,6 +6,10 @@
 ## 프로젝트 개요
 - 오목 게임을 Cpp 콘솔 프로그램으로 구현하기
 - 객체지향적으로 구현하자 !
+- 사용자 먼저 시작하므로 별다른 룰 없이 먼저 연속적인 5개의 돌을 놓는 쪽이 이긴다.
+
+![image](https://user-images.githubusercontent.com/49704910/157182005-cd33d028-6ebe-40aa-8dc6-27028cfd548e.png)
+
 
 ## 클래스 개요
 |No.|클래스|내용|
@@ -83,6 +87,6 @@
 |-|-|-|
 |void|setBoard|LeeSedol|클래스의 포인터 (* Board)[SIZE]에 Aset 클래스의 멤버변수 Board를 저장하는 함수|
 |pair<int,int>|computerTurn|바둑돌을 두기 위한 최적의 위치를 찾는 함수</br> 바둑돌 위치를 반환하고, 이를 그리는것은 GameProcessor 객체가 수행|
-|void	gameForLevel_1|가중치를 계산하기 위한 함수(레벨1)|
-|void	gameForLevel_2|가중치를 계산하기 위한 함수(레벨2)|
+|void|gameForLevel_1|가중치를 계산하기 위한 함수(레벨1)|
+|void|gameForLevel_2|가중치를 계산하기 위한 함수(레벨2)|
 |pair<int, int>|gameForLevel_3|가중치를 계산하기 위한 함수(레벨3)|
