@@ -86,7 +86,7 @@
 ### 멤버함수
 |타입|함수명|내용|
 |-|-|-|
-|void|setBoard|LeeSedol|멤버변수 (* Board)[SIZE]에 Aset 클래스의 멤버변수 Board를 저장하는 함수|
+|void|setBoard|멤버변수 (* Board)[SIZE]에 Aset 클래스의 멤버변수 Board를 저장하는 함수|
 |pair<int,int>|computerTurn|바둑돌을 두기 위한 최적의 위치를 찾는 함수</br> 바둑돌 위치를 반환하고, 이를 그리는것은 GameProcessor 객체가 수행|
 |void|gameForLevel_1|가중치를 계산하기 위한 함수(레벨1)|
 |void|gameForLevel_2|가중치를 계산하기 위한 함수(레벨2)|
