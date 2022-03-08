@@ -39,7 +39,7 @@
 ## 2. class Aset
 - 게임 한판에 대한 정보를 배열로 가지는 클래스.
 - 게임 한판이 끝나면 소멸된다.
-- private으로 가지고 있는 멤버변수 Board를 User에게 공유해야 하므로 User를 friend 선언하여 사용한다.
+- private으로 가지고 있는 멤버변수 Board를 User에게 공유해야 하므로 User를 friend 선언한다
 
 ### 멤버변수
 |타입|변수명|내용|
