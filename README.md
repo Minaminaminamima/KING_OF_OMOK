@@ -49,7 +49,7 @@
 
 </br>
 
-## 3. GameProcessor
+## 3. class GameProcessor
 - 게임 진행을 위한 클래스.
 - 매 게임 같은 동작을 수행하므로 Static으로 선언하여 사용한다.
 - Aset의 오목 판 정보(Board)에 포인터로 직접 접근하여 게임을 진행한다.
@@ -71,7 +71,7 @@
 
 </br>
 
-## 3. LeeSedol
+## 4. class LeeSedol
 - 컴퓨터와 대결하는 클래스
 - 매 게임 같은 동작을 수행하므로 Static으로 선언하여 사용한다.
 - Aset의 오목 판 정보(Board)에 포인터로 직접 접근하여 게임을 진행한다.
