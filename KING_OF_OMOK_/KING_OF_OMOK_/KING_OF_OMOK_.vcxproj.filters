@@ -15,36 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_StartPage.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="_LeeSedol.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="_Core.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="_GameProcessor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="_Aset.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="_User.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="_LeeSedol.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="_StartPage.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="_LeeSedol.cpp">
+    <ClCompile Include="_User.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="_GameProcessor.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="_Aset.cpp">
@@ -53,8 +33,34 @@
     <ClCompile Include="_Core.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="_User.cpp">
+    <ClCompile Include="_GamePlay.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="_GameProcessor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="_Core.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_GamePlay.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_GameProcessor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_LeeSedol.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_StartPage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_User.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_Aset.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{a356d1f6-88d7-48fe-873a-5f1656f6a811}</ProjectGuid>
-    <RootNamespace>My20220302</RootNamespace>
+    <ProjectGuid>{e4829f7c-48ae-4787-8c30-30f3302d6bff}</ProjectGuid>
+    <RootNamespace>KINGOFOMOK</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,20 +139,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="_Core.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="_Aset.cpp" />
+    <ClCompile Include="_Core.cpp" />
+    <ClCompile Include="_GamePlay.cpp" />
     <ClCompile Include="_GameProcessor.cpp" />
     <ClCompile Include="_LeeSedol.cpp" />
     <ClCompile Include="_StartPage.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="_User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Aset.h" />
+    <ClInclude Include="_Core.h" />
+    <ClInclude Include="_GamePlay.h" />
     <ClInclude Include="_GameProcessor.h" />
     <ClInclude Include="_LeeSedol.h" />
     <ClInclude Include="_StartPage.h" />
-    <ClInclude Include="_Core.h" />
     <ClInclude Include="_User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
