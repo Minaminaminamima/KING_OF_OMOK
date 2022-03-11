@@ -1,12 +1,12 @@
 #include "_TCPmode.h";
 
-
+  
 void _TCPmode::TCPserverInit() {
 
 	printf("wait for client......");
 	// use Winsock
 	WSAStartup(MAKEWORD(2, 2), &wasData);
-	// socket ìƒì„±
+	// socket »ı¼º
 	hServSock = socket(PF_INET, SOCK_STREAM, 0);
 	// Binding For server
 	servAddr.sin_family = AF_INET;
@@ -14,7 +14,7 @@ void _TCPmode::TCPserverInit() {
 	servAddr.sin_port = htons(5555);
 	bind(hServSock, (SOCKADDR*)&servAddr, sizeof(servAddr));
 
-	// listen : ì ‘ì†ì ëŒ€ê¸°
+	// listen : Á¢¼ÓÀÚ ´ë±â
 	listen(hServSock, 5);
 	int clientLen = sizeof(clientAddr);
 	hClientSock = accept(hServSock, (SOCKADDR*)&clientAddr, &clientLen);
@@ -32,10 +32,10 @@ void _TCPmode::TCPclientInit() {
 
 	memset(&servAddr, 0, sizeof(servAddr));
 	servAddr.sin_family = AF_INET;
-	servAddr.sin_addr.s_addr = inet_addr("127.0.0.1"); // ìì‹ ì˜ IP
-	servAddr.sin_port = htons(5555); // server ì˜ í¬íŠ¸ ì •ë³´ 
+	servAddr.sin_addr.s_addr = inet_addr("127.0.0.1"); // ÀÚ½ÅÀÇ IP
+	servAddr.sin_port = htons(5555); // server ÀÇ Æ÷Æ® Á¤º¸ 
 
-	// ì„œë²„ ì ‘ì†
+	// ¼­¹ö Á¢¼Ó
 	connect(hSocket, (SOCKADDR*)&servAddr, sizeof(servAddr));
 
 }
@@ -49,7 +49,7 @@ _TCPmode::_TCPmode() {
 
 void _TCPmode::initGame() {
 	ptrGP->setBoard(ptrAset->Board);
-	ptrGP->drawBoard(1);
+	ptrGP->drawBoard(1); 
 }
 
 
@@ -59,7 +59,7 @@ void _TCPmode::initGame() {
 bool _TCPmode::doGameForServer(bool user) {
 
 	ptrGP->initGame();
-
+	 
 	int ret = -1;
 	bool isWin = false;
 
@@ -83,14 +83,14 @@ bool _TCPmode::doGameForServer(bool user) {
 			break;
 		}
 
-
+		
 
 		/////////////// Client Turn
 		ptrGP->drawWhoseTurn(false);
 		recv(hClientSock, message, BUFSIZE, 0); // wait response (syncronize)
 
 		int xx = (int)message[3];
-		int yy = (int)message[4];
+		int yy = (int)message[4]; 
 
 		ptrGP->putStone(xx, yy, !user);
 		ret = ptrGP->isEnd(xx, yy, !user);
@@ -105,7 +105,7 @@ bool _TCPmode::doGameForServer(bool user) {
 
 	ptrGP->showMessage(str);
 	return true;
-
+	 
 
 }
 
@@ -113,13 +113,13 @@ bool _TCPmode::doGameForServer(bool user) {
 
 
 bool _TCPmode::doGameForClient(bool user) {
-
-	ptrGP->initGame();
-
+	
+	ptrGP->initGame(); 
+	  
 	bool isWin = false;
 	int ret = -1;
-
-	char buff[6];
+	 
+	char buff[6]; 
 	buff[0] = 1;
 	buff[1] = 0;
 	buff[2] = 0;
@@ -129,9 +129,9 @@ bool _TCPmode::doGameForClient(bool user) {
 		/////////////// server Turn
 
 		ptrGP->drawWhoseTurn(false);
-		int strLen = recv(hSocket, message, BUFSIZE, 0); // ë™ê¸°í™” 
-		int xx = (int)message[3];
-		int yy = (int)message[4];
+		int strLen = recv(hSocket, message, BUFSIZE, 0); // µ¿±âÈ­ 
+		int xx = (int) message[3];
+		int yy = (int) message[4]; 
 		ptrGP->putStone(xx, yy, !user);
 		ret = ptrGP->isEnd(xx, yy, !user);
 		if (ret > 0) break;
@@ -149,11 +149,11 @@ bool _TCPmode::doGameForClient(bool user) {
 			break;
 		}
 	}
-
+	 
 
 	string str;
 	if (isWin) str = "You Win!";
-	else str = "looooose";
+	else str = "looooose"; 
 
 	ptrGP->showMessage(str);
 	return true;

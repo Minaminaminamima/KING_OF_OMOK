@@ -17,7 +17,7 @@ public:
 
 	/// /////////////////// For client
 	//WSADATA wsaData;
-	SOCKET hSocket;
+	SOCKET hSocket; 
 
 	static const int BUFSIZE = 102400;
 	char message[BUFSIZE] = "";
@@ -28,8 +28,8 @@ public:
 
 
 	_TCPmode();
-	_Aset* ptrAset; // í•œ ê²Œìž„ë§ˆë‹¤ ì†Œë©¸ 
-	_GameProcessor* ptrGP; // game process ë¶€ë¶„ static  
+	_Aset* ptrAset; // ÇÑ °ÔÀÓ¸¶´Ù ¼Ò¸ê 
+	_GameProcessor* ptrGP; // game process ºÎºÐ static  
 
 	bool doGameForClient(bool isFirst);
 	bool doGameForServer(bool isFirst);

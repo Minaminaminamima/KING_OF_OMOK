@@ -6,12 +6,12 @@
 
 
 
-class _User {
+class _User { 
 
-public:
+public :
 
-	_Aset* ptrAset; // í•œ ê²Œìž„ë§ˆë‹¤ ì†Œë©¸ 
-	_GameProcessor* ptrGP; // game process ë¶€ë¶„ static
+	_Aset* ptrAset; // ÇÑ °ÔÀÓ¸¶´Ù ¼Ò¸ê 
+	_GameProcessor* ptrGP; // game process ºÎºÐ static
 	_LeeSedol* ptrLSD; // AI static
 
 	_User();
@@ -25,3 +25,4 @@ public:
 
 
 
+ 

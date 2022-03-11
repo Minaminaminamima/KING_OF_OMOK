@@ -29,13 +29,13 @@ using namespace std;
 const int nX = (40 - SIZE - 1) / 2; // static int / const static int ?
 const int nY = 11 - SIZE / 2;
 
-
+ 
 
 
 static class _Core {
-private:
+private :
 
-public:
+public :
 
     void SetColor(int color);
     void SetColor(int color, int bgcolor);
@@ -44,3 +44,4 @@ public:
     void showCursor(bool input, int cursor_size);
     int getKey();
 };
+ 
