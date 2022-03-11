@@ -7,7 +7,7 @@ class _Aset {
 private: // private
 	int Board[SIZE][SIZE] = { -1, };
 
-public : 
+public:
 	_Aset();
 	friend class _User;
 	friend class _TCPmode;

@@ -13,6 +13,6 @@ public:
 
     int openingPage();
 
-    void endingPage(bool win); 
+    void endingPage(bool win);
 
 };

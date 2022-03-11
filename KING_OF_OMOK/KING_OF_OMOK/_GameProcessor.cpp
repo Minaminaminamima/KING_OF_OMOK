@@ -1,5 +1,5 @@
 #include "_GameProcessor.h"
- 
+
 
 void _GameProcessor::setBoard(int(*userBoard)[SIZE]) {
     Board = userBoard;
@@ -13,7 +13,7 @@ void _GameProcessor::initGame() {
 
 void _GameProcessor::putStone(int x, int y, bool turn) {
 
-    const char* shape[] = { "¡Ü", "¡Ü" };
+    const char* shape[] = { "â—", "â—" };
     int color[2] = { WHITE,BLACK };
     Board[y][x] = turn;
 
@@ -84,10 +84,10 @@ int _GameProcessor::isEnd(int x, int y, bool user) {
 
     return -1;
 }
- 
 
-  
- 
+
+
+
 
 bool _GameProcessor::showMessage(string str) {
 
@@ -202,7 +202,7 @@ int _GameProcessor::userTurn(bool user) {
 
 
 void _GameProcessor::drawWhoseTurn(bool turn) {
-     
+
     corePtr->gotoxy(nX * 2, nY - 1);
     corePtr->SetColor(YELLOW, BLACK);
     if (turn) printf("Your Turn           ");
@@ -222,10 +222,10 @@ void _GameProcessor::drawWhoseTurn(bool turn) {
 
 void _GameProcessor::drawBoard(int level) {
 
-     
-    const char* shape[] = { "¦£ ", "¦¨ ", "¦¤ ", "¦§ ", "¦« ", "¦© ", "¦¦ ", "¦ª ", "¦¥ ", "¡á", "¡á" };
+    system("cls");
+    const char* shape[] = { "â”Œ ", "â”¬ ", "â” ", "â”œ ", "â”¼ ", "â”¤ ", "â”” ", "â”´ ", "â”˜ ", "â– ", "â– " };
 
-    corePtr->gotoxy(nX*2, nY-1);
+    corePtr->gotoxy(nX * 2, nY - 1);
     corePtr->SetColor(YELLOW, BLACK);
     printf("Level %d", level);
 
@@ -239,8 +239,8 @@ void _GameProcessor::drawBoard(int level) {
             corePtr->SetColor(GRAY);
         }
 
-} 
- 
+}
+
 
 
 
@@ -248,49 +248,49 @@ void _GameProcessor::drawBoard(int level) {
 
 int _GameProcessor::getLineNumber(int x, int y)
 {
-    // ¿ŞÂÊ ¼¼·ÎÁÙ 
+    // ì™¼ìª½ ì„¸ë¡œì¤„ 
     if (x == 0)
     {
-        // x, y°¡ ´Ù 0ÀÌ¸é ¿ŞÂÊ »ó´Ü ¸ğ¼­¸® 
+        // x, yê°€ ë‹¤ 0ì´ë©´ ì™¼ìª½ ìƒë‹¨ ëª¨ì„œë¦¬ 
         if (y == 0) return 0;
-        // ¿ŞÂÊ ÇÏ´Ü ¸ğ¼­¸® 
+        // ì™¼ìª½ í•˜ë‹¨ ëª¨ì„œë¦¬ 
         else if (y == SIZE - 1) return 6;
-        // ¿ŞÂÊ ¼¼·ÎÁÙ 
+        // ì™¼ìª½ ì„¸ë¡œì¤„ 
         else return 3;
     }
-    // ¿À¸¥ÂÊ ¼¼·ÎÁÙ 
+    // ì˜¤ë¥¸ìª½ ì„¸ë¡œì¤„ 
     else if (x == SIZE - 1)
     {
-        // ¿À¸¥ÂÊ »ó´Ü ¸ğ¼­¸® 
+        // ì˜¤ë¥¸ìª½ ìƒë‹¨ ëª¨ì„œë¦¬ 
         if (y == 0) return 2;
-        // ¿À¸¥ÂÊ ÇÏ´Ü ¸ğ¼­¸® 
+        // ì˜¤ë¥¸ìª½ í•˜ë‹¨ ëª¨ì„œë¦¬ 
         else if (y == SIZE - 1) return 8;
-        // ¿À¸¥ÂÊ ¼¼·ÎÁÙ 
+        // ì˜¤ë¥¸ìª½ ì„¸ë¡œì¤„ 
         else return 5;
     }
-    // À­ÂÊ °¡·ÎÁÙ
+    // ìœ—ìª½ ê°€ë¡œì¤„
     else if (y == 0)
     {
-        // x, y°¡ ´Ù 0ÀÌ¸é ¿ŞÂÊ »ó´Ü ¸ğ¼­¸® 
+        // x, yê°€ ë‹¤ 0ì´ë©´ ì™¼ìª½ ìƒë‹¨ ëª¨ì„œë¦¬ 
         //if(x == 0) return 0;
-        // ¿À¸¥ÂÊ »ó´Ü ¸ğ¼­¸® 
+        // ì˜¤ë¥¸ìª½ ìƒë‹¨ ëª¨ì„œë¦¬ 
         //else if(x == SIZE - 1) return 2;
-        // À§ÂÊ °¡·ÎÁÙ 
+        // ìœ„ìª½ ê°€ë¡œì¤„ 
         //else return 1;
         return 1;
     }
-    // ¾Æ·¡ÂÊ °¡·ÎÁÙ
+    // ì•„ë˜ìª½ ê°€ë¡œì¤„
     else if (y == SIZE - 1)
     {
-        // ¿ŞÂÊ ÇÏ´Ü ¸ğ¼­¸® 
+        // ì™¼ìª½ í•˜ë‹¨ ëª¨ì„œë¦¬ 
         //if(x == 0) return 6;
-        // ¿À¸¥ÂÊ ÇÏ´Ü ¸ğ¼­¸® 
+        // ì˜¤ë¥¸ìª½ í•˜ë‹¨ ëª¨ì„œë¦¬ 
         //else if(x == SIZE - 1) return 8;
-        // ¾Æ·¡ÂÊ °¡·ÎÁÙ 
+        // ì•„ë˜ìª½ ê°€ë¡œì¤„ 
         //else return 7;
         return 7;
     }
-    // ¸¶Áö¸· °¡¿îµ¥ + ¸ğ¾ç 
+    // ë§ˆì§€ë§‰ ê°€ìš´ë° + ëª¨ì–‘ 
     else return 4;
 }
 
