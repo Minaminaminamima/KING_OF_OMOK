@@ -11,7 +11,7 @@ public:
 
     _Core* corePtr = new _Core();
 
-    void openingPage();
+    int openingPage();
 
     void endingPage(bool win); 
 

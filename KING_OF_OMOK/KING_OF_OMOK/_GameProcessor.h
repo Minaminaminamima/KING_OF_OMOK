@@ -17,10 +17,9 @@ public:
     void setBoard(int(*userBoard)[SIZE]);
     void initGame();
     void putStone(int y, int x, bool turn);
-    void drawBoard(int level);
-    void showTime(double duration);
+    void drawBoard(int level); 
     int getLineNumber(int x, int y);
-    
+    void drawWhoseTurn(bool usr);
 
     //////////////////// control the game
     int isEnd(int x, int y, bool user);
@@ -29,6 +28,7 @@ public:
 
     /////////////////////////// sub-func
     int userTurn(bool user);
+    pair<int, int> TCPTurn(bool user);
     int checkTheRow(int x, int y, bool user);
     int checkTheCol(int x, int y, bool user);
     int checkTheDownCross(int x, int y, bool user);

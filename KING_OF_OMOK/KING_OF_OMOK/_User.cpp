@@ -26,7 +26,7 @@ bool _User::doGame() {
     ptrGP->initGame();
     int level = ADMIN_LEVEL;   
 
-start: 
+start:
     initGame(level);
     bool user = true;
     bool winner = !user;

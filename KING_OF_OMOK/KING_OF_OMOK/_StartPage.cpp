@@ -32,7 +32,7 @@ const char* STARTPAGE_OMOK[6][SIZE + 4] = {
 
 
 
-void _StartPage::openingPage() {
+int _StartPage::openingPage() {
 
     corePtr->showCursor(false, 1);
     int fontcolor = DARK_BLUE; 
@@ -90,16 +90,22 @@ void _StartPage::openingPage() {
 
     corePtr->SetColor(WHITE, BLACK);
     corePtr->gotoxy(2*nX+9, nY+17);
-    printf("press Enter to start");
+    printf("key 1 : game with computer"); 
+    corePtr->gotoxy(2 * nX + 9, nY + 18);
+    printf("key 2 : Enter as host");
+    corePtr->gotoxy(2 * nX + 9, nY + 19);
+    printf("key 3 : Enter as guest");
 
     Sleep(velo*3);
 
      
     while (1) {
-        if (_kbhit()) if (corePtr->getKey() == ENTER) {
-            system("cls");
-            return;
+        if (_kbhit()) {
+            if (corePtr->getKey() == '1') return 1;
+            else if (corePtr->getKey() == '2') return 2;
+            else if (corePtr->getKey() == '3') return 3;
         }
+        
     }
 }
 

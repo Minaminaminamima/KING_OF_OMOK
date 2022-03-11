@@ -1,8 +1,10 @@
 #pragma once
+#include <winSock2.h> 
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>
-#include <iostream>
+#include <iostream> 
+#include <stdlib.h>  
 using namespace std;
 
 

@@ -101,6 +101,56 @@ bool _GameProcessor::showMessage(string str) {
 }
 
 
+
+pair<int, int> _GameProcessor::TCPTurn(bool user) {
+
+    int x = 0;
+    int y = 0;
+    bool isDone = false;
+    int ret = -1;
+
+    while (!isDone) {
+
+        if (_kbhit()) {
+            int ch = corePtr->getKey();
+
+            switch (ch)
+            {
+            case UP:
+                moveCursor(x, --y);
+                break;
+
+            case DOWN:
+                moveCursor(x, ++y);
+                break;
+
+            case LEFT:
+                moveCursor(--x, y);
+                break;
+
+            case RIGHT:
+                moveCursor(++x, y);
+                break;
+
+            case ENTER:
+                if (Board[y][x] != -1) continue;
+                putStone(x, y, user);
+                //ret = isEnd(x, y, user);
+                isDone = true;
+            }
+
+
+        }
+
+
+    }
+    return { x,y };
+}
+
+
+
+
+
 int _GameProcessor::userTurn(bool user) {
 
     int x = 0;
@@ -151,6 +201,14 @@ int _GameProcessor::userTurn(bool user) {
 
 
 
+void _GameProcessor::drawWhoseTurn(bool turn) {
+     
+    corePtr->gotoxy(nX * 2, nY - 1);
+    corePtr->SetColor(YELLOW, BLACK);
+    if (turn) printf("Your Turn           ");
+    else printf("Other Turn              ");
+}
+
 
 
 
@@ -189,27 +247,50 @@ void _GameProcessor::drawBoard(int level) {
 
 
 int _GameProcessor::getLineNumber(int x, int y)
-{ 
+{
+    // 왼쪽 세로줄 
     if (x == 0)
-    { 
-        if (y == 0) return 0; 
-        else if (y == SIZE - 1) return 6; 
+    {
+        // x, y가 다 0이면 왼쪽 상단 모서리 
+        if (y == 0) return 0;
+        // 왼쪽 하단 모서리 
+        else if (y == SIZE - 1) return 6;
+        // 왼쪽 세로줄 
         else return 3;
-    } 
+    }
+    // 오른쪽 세로줄 
     else if (x == SIZE - 1)
-    { 
-        if (y == 0) return 2; 
-        else if (y == SIZE - 1) return 8; 
+    {
+        // 오른쪽 상단 모서리 
+        if (y == 0) return 2;
+        // 오른쪽 하단 모서리 
+        else if (y == SIZE - 1) return 8;
+        // 오른쪽 세로줄 
         else return 5;
-    } 
+    }
+    // 윗쪽 가로줄
     else if (y == 0)
-    { 
+    {
+        // x, y가 다 0이면 왼쪽 상단 모서리 
+        //if(x == 0) return 0;
+        // 오른쪽 상단 모서리 
+        //else if(x == SIZE - 1) return 2;
+        // 위쪽 가로줄 
+        //else return 1;
         return 1;
-    } 
+    }
+    // 아래쪽 가로줄
     else if (y == SIZE - 1)
-    { 
+    {
+        // 왼쪽 하단 모서리 
+        //if(x == 0) return 6;
+        // 오른쪽 하단 모서리 
+        //else if(x == SIZE - 1) return 8;
+        // 아래쪽 가로줄 
+        //else return 7;
         return 7;
-    } 
+    }
+    // 마지막 가운데 + 모양 
     else return 4;
 }
 
