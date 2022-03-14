@@ -33,7 +33,13 @@
     <ClInclude Include="_User.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="_TCPmode.h">
+    <ClInclude Include="_CommunicationMode.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_usrForServer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="_usrForClient.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,7 +65,10 @@
     <ClCompile Include="_User.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="_TCPmode.cpp">
+    <ClCompile Include="_usrForClient.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="_usrForServer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

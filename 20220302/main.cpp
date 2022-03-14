@@ -1,9 +1,12 @@
-﻿#include "_TCPmode.h"
 #include "_StartPage.h" 
 #include "_User.h"
+#include "_usrForClient.h"
+#include "_usrForServer.h"
 using namespace std;
 
- 
+
+
+
 int main() {
 
 
@@ -12,6 +15,7 @@ int main() {
     system("cls");
 
     bool isEnter = false;
+    bool isWin = false;
 
     if (mode == 1) {
         // KING_OF_OMOK //
@@ -23,25 +27,27 @@ int main() {
 
 
         _User* userTest = new _User();
-        bool isWin = userTest->doGame();
+        isWin = userTest->doGame();
 
-        ptrStartPage->endingPage(isWin);
     }
 
     else if (mode == 2) {
-        _TCPmode* TCPTest = new _TCPmode();
-        TCPTest->TCPserverInit();
-        TCPTest->initGame();
-        TCPTest->doGameForServer(true);
+        _usrForServer* ptrUsrServer = new _usrForServer();
+        ptrUsrServer->SocketInit();
+        isWin = ptrUsrServer->doGame(true);
     }
-
 
     else if (mode == 3) {
-        _TCPmode* TCPTest = new _TCPmode();
-        TCPTest->TCPclientInit();
-        TCPTest->initGame();
-        TCPTest->doGameForClient(false);
+        _usrForClient* ptrUsrClient = new _usrForClient();
+        ptrUsrClient->SocketInit();
+        isWin = ptrUsrClient->doGame(false);
     }
 
+    ptrStartPage->endingPage(isWin);
+
+    while (1);
 
 }
+
+
+ 

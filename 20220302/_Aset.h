@@ -10,6 +10,6 @@ private: // private
 public : 
 	_Aset();
 	friend class _User;
-	friend class _TCPmode;
+	friend class _CommunicationMode;
 
 };

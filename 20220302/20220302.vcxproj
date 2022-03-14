@@ -121,6 +121,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalOptions>ws2_32.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,7 +141,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="_TCPmode.cpp" />
     <ClCompile Include="_Core.cpp" />
     <ClCompile Include="_Aset.cpp" />
     <ClCompile Include="_GameProcessor.cpp" />
@@ -148,15 +148,19 @@
     <ClCompile Include="_StartPage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="_User.cpp" />
+    <ClCompile Include="_usrForClient.cpp" />
+    <ClCompile Include="_usrForServer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_TCPmode.h" />
+    <ClInclude Include="_CommunicationMode.h" />
     <ClInclude Include="_Aset.h" />
     <ClInclude Include="_GameProcessor.h" />
     <ClInclude Include="_LeeSedol.h" />
     <ClInclude Include="_StartPage.h" />
     <ClInclude Include="_Core.h" />
     <ClInclude Include="_User.h" />
+    <ClInclude Include="_usrForClient.h" />
+    <ClInclude Include="_usrForServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
