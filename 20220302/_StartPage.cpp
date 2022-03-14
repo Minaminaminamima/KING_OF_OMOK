@@ -94,6 +94,8 @@ int _StartPage::openingPage() {
     printf("key 2 : Enter as host");
     corePtr->gotoxy(2 * nX + 9, nY + 19);
     printf("key 3 : Enter as guest");
+    corePtr->gotoxy(2 * nX + 9, nY + 20);
+    printf("key q : quit the game");
 
     Sleep(velo*3);
 
@@ -103,6 +105,7 @@ int _StartPage::openingPage() {
             if (corePtr->getKey() == '1') return 1;
             else if (corePtr->getKey() == '2') return 2;
             else if (corePtr->getKey() == '3') return 3;
+            else if (corePtr->getKey() == 'q') return -1;
         }
         
     }
