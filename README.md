@@ -18,8 +18,26 @@
 |2|Aset|오목 한 게임에 대한 정보를 가지는 클래스|
 |3|GameProcessor|게임 플레이를 위한 클래스|
 |4|LeeSedol|컴퓨터와 대결을 위한 클래스|
-|5|StartPage|게임 시작, 끝 화면을 보여주기 위한 클래스|
-|6|Core|콘솔 관련 기능 클래스|
+|5|TCPmode|다른 사용자와 대결하기 위한 클래스|
+|6|StartPage|게임 시작, 끝 화면을 보여주기 위한 클래스|
+|7|Core|콘솔 관련 기능 클래스|
+
+</br>
+
+## 메인문 Flowchart
+
+
+![image](https://github.com/Minaminaminamima/KING_OF_OMOK/blob/main/img/mainFlowchart.png?raw=true)
+
+메인문에서는 크게 세가지 부분으로 나뉘어 진행된다.
+- __게임 시작__ : StartPage 객체 포인터를 생성하여 static StartPage 주소를 받아와 시작 페이지를 출력한다. 시작 페이지에서 게임 모드(컴퓨터와 대결, 다른 유저와 대결)을 선택할 수 있다.
+- __게임진행__
+  - (1) 컴퓨터 모드 : 컴퓨터와 대결할 수 있는 LeeSedol 객체를 포함하는 User객체를 생성한다. 
+  - (2) 유저와 대결(Server) : 다른 유저와 대결할 수 있도록 세션을 생성하는 TCPmode 객체를 생성한다. 서버가 먼저 생성된 후 클라이언트가 입장할 수 있다.
+  - (3) 유저와 대결(Client) : 다른 유저와 대결할 수 있도록 세션을 생성하는 TCPmode 객체를 생성한다.  
+- __게임 종료__ : 게임이 끝난 후 retrun되는 값(true, false)을 인자로 받아 엔딩 페이지를 다르게 출력한다(win, lose).
+
+
 
 </br>
 
