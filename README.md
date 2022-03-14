@@ -12,24 +12,29 @@
 
 
 ## 클래스 개요
+- 클래스 네이밍 규칙은 앞자리에 (_)기호를 붙인다.
+
 |No.|클래스|내용|
 |-|-|-|
-|1|User|게임 플레이어가 게임을 하기 위한 클래스를 모아놓은 클래스|
-|2|Aset|오목 한 게임에 대한 정보를 가지는 클래스|
-|3|GameProcessor|게임 플레이를 위한 클래스|
-|4|LeeSedol|컴퓨터와 대결을 위한 클래스|
-|5|TCPmode|다른 사용자와 대결하기 위한 클래스|
-|6|StartPage|게임 시작, 끝 화면을 보여주기 위한 클래스|
-|7|Core|콘솔 관련 기능 클래스|
+|1|Aset|오목 한 게임에 대한 정보를 가지는 클래스|
+|2|GameProcessor|게임 플레이를 위한 클래스|
+|3|LeeSedol|컴퓨터와 대결을 위한 클래스|
+|4|TCPmode|다른 사용자와 대결하기 위한 클래스|
+|5|StartPage|게임 시작, 끝 화면을 보여주기 위한 클래스|
+|6|Core|콘솔 관련 기능 클래스|
+|7|User|게임 플레이어가 게임을 하기 위한 클래스를 모아놓은 클래스|
+|8|CommunicationMode|TCP/IP 통신 Server, Client 를 구현하기 위한 parents 클래스|
+|9|usrForServer|CommunicationMode를 상속받아 Server로 구현된 클래스|
+|10|usrForClient|CommunicationMode를 상속받아 Client로 구현된 클래스|
 
 </br>
 
 ## 메인문 Flowchart
 
 
-![image](https://github.com/Minaminaminamima/KING_OF_OMOK/blob/main/img/mainFlowchart.png?raw=true)
+![image](https://user-images.githubusercontent.com/49704910/158114101-fca7727b-7fd9-4c36-aed3-1cf2c83072c6.png)
 
-메인문에서는 크게 세가지 부분으로 나뉘어 진행된다.
+메인문에서는 플레이 모드 선택에 따라 세 부분으로 나뉜다.
 - __게임 시작__ : StartPage 객체 포인터를 생성하여 static StartPage 주소를 받아와 시작 페이지를 출력한다. 시작 페이지에서 게임 모드(컴퓨터와 대결, 다른 유저와 대결)을 선택할 수 있다.
 - __게임진행__
   - (1) 컴퓨터 모드 : 컴퓨터와 대결할 수 있는 LeeSedol 객체를 포함하는 User객체를 생성한다. 
@@ -41,9 +46,28 @@
 
 </br>
 
-## 1. class User
-프로그램 실행시 메인문에서 유저 객체를 생성하여 게임을 시작한다.
-생성자에서 멤버 변수로 다른 클래스들을 나타내는 포인터(ptrAset, ptrGP, ptrLSD)를 정의하여 이를 통해 게임을 플레이한다.
+## 1. class Aset
+- 게임 한판에 대한 정보를 배열로 가지는 클래스.
+- 게임 시작시 생성되고, 끝나면 소멸된다.
+- 게임의 주체인 User, CommunicationMode 클래스가 Private 속성인 Board에 접근할 수 있도록 friend class로 선언된다.
+
+### 멤버변수
+|타입|변수명|내용|
+|-|-|-|
+|int|Board[SIZE][SIZE]| 현재 게임에 대한 정보를 가지고 있는 2차원 배열|
+|friend class|User|private property인 Board에 접근할 수 있도록 friend 선언|
+|friend class|CommunicationMode|private property인 Board에 접근할 수 있도록 friend 선언|
+
+
+</br>
+
+## 2. class User
+- 컴퓨터 모드로 게임시 생성되는 객체
+- 생성자에서 멤버 변수로 다른 클래스들을 나타내는 포인터(ptrAset, ptrGP, ptrLSD)를 정의하여 이를 통해 게임을 플레이한다.
+
+### Class diagram
+
+![image](https://user-images.githubusercontent.com/49704910/158114199-b04666f6-1a7c-465a-a6cc-ff956556b48e.png)
 
 ### 멤버변수
 |타입|변수명|내용|
@@ -52,18 +76,6 @@
 |_GameProcessor*|ptrGP|static으로 이미 생성된 객체를 가르킴|
 |_LeeSedol*|ptrLSD|static으로 이미 생성된 객체를 가르킴|
 
-</br>
-
-## 2. class Aset
-- 게임 한판에 대한 정보를 배열로 가지는 클래스.
-- 게임 한판이 끝나면 소멸된다.
-- private으로 가지고 있는 멤버변수 Board를 User에게 공유해야 하므로 User를 friend 선언한다
-
-### 멤버변수
-|타입|변수명|내용|
-|-|-|-|
-|int|Board[SIZE][SIZE]|현재 게임에 대한 정보를 가지고 있는 2차원 배열|
-
 
 </br>
 
@@ -71,6 +83,10 @@
 - 게임 진행을 위한 클래스.
 - 매 게임 같은 동작을 수행하므로 Static으로 선언하여 사용한다.
 - Aset의 오목 판 정보(Board)에 포인터로 직접 접근하여 게임을 진행한다.
+
+### Class diagram
+![image](https://user-images.githubusercontent.com/49704910/158114319-b6fed1f3-dea5-4bd7-99f6-4889e4a8ac3f.png)
+
 
 ### 멤버변수
 |타입|변수명|내용|
@@ -110,3 +126,30 @@
 |void|gameForLevel_1|가중치를 계산하기 위한 함수(레벨1)|
 |void|gameForLevel_2|가중치를 계산하기 위한 함수(레벨2)|
 |pair<int, int>|gameForLevel_3|가중치를 계산하기 위한 함수(레벨3)|
+
+</br>
+
+## 5. class CommunicationMode
+- TCP/IP 모드로 다른 컴퓨터의 유저와 게임하기 위해 구현된 클래스
+- 통신하기 위하여 한쪽은 서버, 한쪽은 클라이언트로 동작을 해야한다. 
+
+
+### Class diagram
+- 게임을 위해 User 클래스와 마찬가지로 Aset, GameProcessor 클래스를 참조하는 구조이다.
+
+![image](https://user-images.githubusercontent.com/49704910/158114501-a7e28ea5-4792-41dd-9083-e7320546ad1c.png)
+
+### 멤버함수
+- TCP/IP 서버와 클라이언트는 같은 목적의 동적을 수행하지만 실행되는 구조는 다르다. 따라서 이러한 함수를 가상함수로 선언하고, 이를 상속받아 자식 클래스에서 구현하도록 하였다.
+- 상속구조
+
+　 　　 ![image](https://user-images.githubusercontent.com/49704910/158114724-333f5516-1fab-42c3-833c-49cfb5570675.png) 
+
+|타입|함수명|내용|
+|-|-|-|
+|void|initGame|멤버변수 (* Board)[SIZE]에 Aset 클래스의 멤버변수 Board를 저장하는 함수|
+|virtual bool|doGame|상대편과 게임을 하기 위한 가상함수|
+|virtual void|SocketInit|소켓을 초기화하고 설정하기 위한 가상함수| 
+
+
+
