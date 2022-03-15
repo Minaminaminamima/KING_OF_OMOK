@@ -23,6 +23,8 @@ int main() {
         if (mode == 1) {
             _User* userTest = new _User();
             isWin = userTest->doGame();
+            ptrStartPage->endingPage(isWin);
+            Sleep(3000);
 
         }
 
