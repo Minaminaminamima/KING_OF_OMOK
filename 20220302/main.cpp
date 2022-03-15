@@ -1,3 +1,4 @@
+#pragma comment(lib, "ws2_32.lib")
 #include "_StartPage.h" 
 #include "_User.h"
 #include "_usrForClient.h"

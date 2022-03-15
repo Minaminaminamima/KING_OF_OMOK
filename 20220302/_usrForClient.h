@@ -5,7 +5,7 @@ class _usrForClient : public _CommunicationMode{
 
 private : 
 
-	char server_IP[40];
+	char server_IP[40] = "";
 
 
 public: 

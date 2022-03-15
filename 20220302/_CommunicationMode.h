@@ -18,6 +18,7 @@ protected :
 
 	static const int BUFSIZE = 102400;
 	char message[BUFSIZE] = "";
+	char buff[6] = { 1,0,0,0,0,0 };
 
 
 public:
