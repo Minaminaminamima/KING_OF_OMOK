@@ -38,26 +38,25 @@ pair<int, int> _LeeSedol::computerTurn(bool user, int level) {
         for (int y = 0; y < SIZE; y++) {
            
             if (Board[y][x] == -1) continue;
-
-            else if (Board[y][x] == (int)user) { // for attack 
+              
+            else if (Board[y][x] == !user) {
+                gameForLevel_1(y, x);
+                if (level >= 2) gameForLevel_2(y, x);
+            }
+            else if (Board[y][x] == user){
                 if (level >= 3) gameForLevel_3(y, x);
                 if (level >= 4) gameForLevel_4(y, x);
             }
-            else { // Board[y][x] != (int) user // depend 
-                gameForLevel_1(y, x);
-                if (level >= 2) gameForLevel_2(y, x); 
-                if (level >= 3) gameForLevel_3(y, x);
-            }
 
-            for (int k = 0; k < DIR_SIZE; k++) {    
-                int next_x = x + dir_x[k];
-                int next_y = y + dir_y[k];
-                if (!isInside(next_x, next_y) || Board[next_y][next_x]!=-1) continue;
-                weightBoard[next_y][next_x] += (int)user == Board[next_y][next_x] ? 3 : -3;
+                for (int k = 0; k < DIR_SIZE; k++) {    
+                    int next_x = x + dir_x[k];
+                    int next_y = y + dir_y[k];
+                    if (!isInside(next_x, next_y) || Board[next_y][next_x]!=-1) continue;
+                    weightBoard[next_y][next_x] += (int)user == Board[next_y][next_x] ? 1 : -1;
             }
         }
     }
-
+    
     MustCase();
 
     int check_y=SIZE/2, check_x=SIZE/2;
@@ -93,8 +92,8 @@ bool _LeeSedol::MustCase() {
             for (int k = 1; k < 4; k++) {
                 if (j + k < SIZE && Board[i][j + k] == Board[i][j]) cnt++;}
             if (cnt == 4) {
-                if (j + 4 < SIZE && Board[i][j + 4] == -1) weightBoard[i][j + 4] = -100000;
-                if (j - 1 >=0 && Board[i][j -1]==-1) weightBoard[i][j - 1] = -100000;
+                if (j + 4 < SIZE && Board[i][j + 4] == -1) weightBoard[i][j + 4] = -INF;
+                if (j - 1 >=0 && Board[i][j -1]==-1) weightBoard[i][j - 1] = -INF;
                 ret = true;
             }
 
@@ -105,8 +104,8 @@ bool _LeeSedol::MustCase() {
                 if (i + k < SIZE && Board[i+k][j] == Board[i][j]) cnt++;
             }
             if (cnt == 4) {
-                if (i + 4 < SIZE && Board[i + 4][j] == -1) weightBoard[i + 4][j] = -100000;
-                if (i - 1 >=0  && Board[i -1 ][j] == -1) weightBoard[i -1 ][j] = -100000;
+                if (i + 4 < SIZE && Board[i + 4][j] == -1) weightBoard[i + 4][j] = -INF;
+                if (i - 1 >=0  && Board[i -1 ][j] == -1) weightBoard[i -1 ][j] = -INF;
                 ret = true;
             }
 
@@ -117,8 +116,8 @@ bool _LeeSedol::MustCase() {
                 if (i-k>=0 && j+k<SIZE && Board[i - k][j+k] == Board[i][j]) cnt++;
             }
             if (cnt == 4) {
-                if (i - 4 >= 0 && j + 4 < SIZE && Board[i - 4][j + 4] == -1) weightBoard[i - 4][j + 4] = -100000;
-                if (i + 1 <SIZE && j -1 >=0 && Board[i + 1][j - 1] == -1) weightBoard[i - 1][j + 1] = -100000;
+                if (i - 4 >= 0 && j + 4 < SIZE && Board[i - 4][j + 4] == -1) weightBoard[i - 4][j + 4] = -INF;
+                if (i + 1 <SIZE && j -1 >=0 && Board[i + 1][j - 1] == -1) weightBoard[i - 1][j + 1] = -INF;
                 ret = true;
             }
 
@@ -128,8 +127,8 @@ bool _LeeSedol::MustCase() {
                 if (i + k <SIZE && j + k < SIZE && Board[i + k][j + k] == Board[i][j]) cnt++;
             }
             if (cnt == 4) {
-                if (i + 4 >= 0 && j + 4 < SIZE && Board[i + 4][j + 4] == -1) weightBoard[i + 4][j + 4] = -100000;
-                if (i -1 <SIZE && j -1 >=0 && Board[i -1 ][j -1 ] == -1) weightBoard[i - 1][j - 1] = -100000;
+                if (i + 4 >= 0 && j + 4 < SIZE && Board[i + 4][j + 4] == -1) weightBoard[i + 4][j + 4] = -INF;
+                if (i -1 <SIZE && j -1 >=0 && Board[i -1 ][j -1 ] == -1) weightBoard[i - 1][j - 1] = -INF;
                 ret = true;
             }
 
@@ -160,8 +159,8 @@ void _LeeSedol::gameForLevel_1(int y, int x) {
     }
 
     if (flag) {
-        if (isInside(x - 1, y) && Board[y][x - 1] == -1) weightBoard[y][x - 1] = -505;
-        if (isInside(x + 3, y) && Board[y][x + 3] == -1) weightBoard[y][x + 3] = -505;
+        if (isInside(x - 1, y) && Board[y][x - 1] == -1) weightBoard[y][x - 1] = -100000;
+        if (isInside(x + 3, y) && Board[y][x + 3] == -1) weightBoard[y][x + 3] = -100000;
     }
 
 
@@ -175,8 +174,8 @@ void _LeeSedol::gameForLevel_1(int y, int x) {
     }
 
     if (flag) {
-        if (isInside(x, y-1) && Board[y-1][x] == -1) weightBoard[y-1][x] = -505;
-        if (isInside(x, y+3) && Board[y+3][x] == -1) weightBoard[y+3][x] = -505;
+        if (isInside(x, y-1) && Board[y-1][x] == -1) weightBoard[y-1][x] = -100000;
+        if (isInside(x, y+3) && Board[y+3][x] == -1) weightBoard[y+3][x] = -100000;
     }
 
 
@@ -190,8 +189,8 @@ void _LeeSedol::gameForLevel_1(int y, int x) {
     }
 
     if (flag) {
-        if (isInside(x-1, y - 1) && Board[y - 1][x-1] == -1) weightBoard[y - 1][x-1] = -505;
-        if (isInside(x+3, y + 3) && Board[y + 3][x+3] == -1) weightBoard[y + 3][x+3] = -505;
+        if (isInside(x-1, y - 1) && Board[y - 1][x-1] == -1) weightBoard[y - 1][x-1] = -100000;
+        if (isInside(x+3, y + 3) && Board[y + 3][x+3] == -1) weightBoard[y + 3][x+3] = -100000;
     }
 
 
@@ -205,8 +204,8 @@ void _LeeSedol::gameForLevel_1(int y, int x) {
     }
 
     if (flag) {
-        if (isInside(x - 1, y + 1) && Board[y + 1][x - 1] == -1) weightBoard[y + 1][x - 1] = -505;
-        if (isInside(x + 3, y - 3) && Board[y - 3][x + 3] == -1) weightBoard[y - 3][x + 3] = -505;
+        if (isInside(x - 1, y + 1) && Board[y + 1][x - 1] == -1) weightBoard[y + 1][x - 1] = -100000;
+        if (isInside(x + 3, y - 3) && Board[y - 3][x + 3] == -1) weightBoard[y - 3][x + 3] = -100000;
     }
 
     return;
@@ -235,7 +234,7 @@ void _LeeSedol::gameForLevel_2(int y, int x) {
 
     if (flag && cnt >= 3) {
         for (int i = x + 1; i < x + 4; i++) {
-            if (Board[y][i] == -1) weightBoard[y][i] = -400;
+            if (Board[y][i] == -1) weightBoard[y][i] = -90000;
         }
     }
 
@@ -253,7 +252,7 @@ void _LeeSedol::gameForLevel_2(int y, int x) {
 
     if (flag && cnt >= 3) {
         for (int i = y + 1; i < y + 4; i++) {
-            if (Board[i][x] == -1) weightBoard[i][x] = -400;
+            if (Board[i][x] == -1) weightBoard[i][x] = -90000;
         }
     }
 
@@ -273,7 +272,7 @@ void _LeeSedol::gameForLevel_2(int y, int x) {
 
     if (flag && cnt >= 3) {
         for (int k = 1; k < 4; k++) {
-            if (Board[y-k][x+k] == -1) weightBoard[y-k][x+k] = -400;
+            if (Board[y-k][x+k] == -1) weightBoard[y-k][x+k] = -90000;
         }
     }
 
@@ -291,7 +290,7 @@ void _LeeSedol::gameForLevel_2(int y, int x) {
 
     if (cnt >= 3) {
         for (int k = 1; k < 4; k++) {
-            if (Board[y + k][x + k] == -1) weightBoard[y + k][x + k] = -400;
+            if (Board[y + k][x + k] == -1) weightBoard[y + k][x + k] = -90000;
         }
     }
 
@@ -306,55 +305,65 @@ void _LeeSedol::gameForLevel_2(int y, int x) {
 void _LeeSedol::gameForLevel_3(int y, int x) {
 
    // check row 
+    int cnt = 0;
        for (int k = 1; k < 3; k++) {
-           if (x+k>SIZE || Board[y][x+k] != Board[y][x]) goto checkCol;
+           if (x+k<SIZE && Board[y][x+k] == Board[y][x]) cnt++;
        }
-       if (isInside(x + 3, y) && Board[y][x + 3] == -1) {
-           weightBoard[y][x + 3] = -500; 
-       }
-       if (isInside(x - 1, y) && Board[y][x - 1] == -1) {
-           weightBoard[y][x -1 ] = -500; 
+       if (cnt == 2) {
+           if (isInside(x + 3, y) && Board[y][x + 3] == -1) {
+               if (isInside(x + 4, y) && Board[y][x + 4] != (int)!Board[y][x]) weightBoard[y][x + 3] = -8000;
+           }
+           if (isInside(x - 1, y) && Board[y][x - 1] == -1) {
+               if (isInside(x - 2, y) && Board[y][x - 2] != (int)!Board[y][x]) weightBoard[y][x - 1] = -8000;
+           }
        }
 
-   checkCol :
+       cnt = 0;
        for (int k = 1; k < 3; k++) {
-           if (y+k>SIZE || Board[y+k][x] != Board[y][x]) goto checkUpCross;
+           if (y + k > SIZE && Board[y + k][x] == Board[y][x]) cnt++;
+       }
+       if (cnt == 2) {
+
+           if (isInside(x, y + 3) && Board[y + 3][x] == -1) {
+               if (isInside(x, y + 4) && Board[y + 4][x] != (int)!Board[y][x]) weightBoard[y + 3][x] = -8000;
+           }
+           if (isInside(x, y - 1) && Board[y - 1][x] == -1) {
+               if (isInside(x - 2, y) && Board[y][x - 2] != (int)!Board[y][x]) weightBoard[y - 1][x] = -8000;
+           }
        }
 
-       if (isInside(x, y + 3) && Board[y + 3][x] == -1) {
-           weightBoard[y+3][x] = -500; 
-       }
-       if (isInside(x, y - 1) && Board[y - 1][x] == -1) {
-           weightBoard[y - 1][x] = -500; 
-       }
 
-
-   checkUpCross:
+       cnt = 0;
        for (int k = 1; k < 3; k++) {
-           if (y-k<0 || x+k>SIZE || Board[y - k][x+k] != Board[y][x]) goto checkDownCross;
+           if (y - k<0 && x + k>SIZE && Board[y - k][x + k] == Board[y][x]) cnt++;
+       }
+       if (cnt == 2) {
+
+           if (isInside(x + 3, y - 3) && Board[y - 3][x + 3] == -1) {
+               if (isInside(x + 4, y - 4) && Board[y - 4][x + 4] != (int)!Board[y][x])  weightBoard[y - 3][x + 3] = -8000;
+           }
+           if (isInside(x - 1, y - 1) && Board[y - 1][x - 1] == -1) {
+               if (isInside(x - 2, y - 2) && Board[y - 2][x - 2] != (int)!Board[y][x]) weightBoard[y + 1][x - 1] = -8000;
+           }
        }
 
-       if (isInside(x + 3, y - 3) && Board[y - 3][x + 3] == -1) {
-           weightBoard[y - 3][x + 3] = -500; 
-       }
-       if (isInside(x - 1, y - 1) && Board[y - 1][x - 1] == -1) {
-           weightBoard[y - 1][x - 1] = -500; 
-       }
 
 
-
-   checkDownCross :
+       cnt = 0;
        for (int k = 1; k < 3; k++) {
-           if (x+k>SIZE || y+k>SIZE || Board[y + k][x + k] != Board[y][x]) return;
+           if (x + k > SIZE && y + k > SIZE && Board[y + k][x + k] == Board[y][x]) cnt++;
        }
 
-       if (isInside(x + 3, y + 3) && Board[y + 3][x + 3] == -1) {
-           weightBoard[y + 3][x + 3] = -500; 
+       if (cnt == 2) {
+
+           if (isInside(x + 3, y + 3) && Board[y + 3][x + 3] == -1) {
+               if (isInside(x + 4, y + 4) && Board[y + 4][x + 4] != (int)!Board[y][x])  weightBoard[y + 3][x + 3] = -8000;
+           }
+           if (isInside(x - 1, y - 1) && Board[y - 1][x - 1] == -1) {
+               if (isInside(x - 2, y - 2) && Board[y - 2][x - 2] != (int)!Board[y][x])  weightBoard[y - 1][x - 1] = -8000;
+           }
+
        }
-       if (isInside(x - 1, y - 1) && Board[y - 1][x - 1] == -1) {
-           weightBoard[y - 1][x - 1] = -500; 
-       }
-        
 }
 
 
@@ -373,7 +382,7 @@ void _LeeSedol::gameForLevel_4(int y, int x) {
     }
     if (cnt == 4) for (int k = 1; k < 4; k++) {
         if (Board[y][x + k] == -1) {
-            weightBoard[y][x + k] = -400; 
+            weightBoard[y][x + k] = -8000;
             break;
         }
     }
@@ -387,7 +396,7 @@ checkCol:
     }
     if (cnt == 4) for (int k = 1; k < 4; k++) {
         if (Board[y + k][x] == -1) {
-            weightBoard[y+k][x] = -400;
+            weightBoard[y+k][x] = -8000;
             break;
         }
     }
@@ -400,7 +409,7 @@ checkUpCross:
     }
     if (cnt == 4) for (int k = 1; k <4; k++) {
         if (Board[y - k][x + k] == -1) {
-            weightBoard[y - k][x + k] = -400;
+            weightBoard[y - k][x + k] = -8000;
             break;
         }
     }
@@ -414,7 +423,7 @@ checkDownCross:
 
     if (cnt == 4) for (int k = 1; k < 4; k++) {
         if (Board[y + k][x + k] == -1) {
-            weightBoard[y + k][x + k] = -400;
+            weightBoard[y + k][x + k] = -8000;
             break;
         }
     }
