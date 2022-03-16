@@ -26,7 +26,9 @@ public:
 
     void gameForLevel_1(int y, int x);
     void gameForLevel_2(int y, int x);
-    pair<int, int> gameForLevel_3(int y, int x); // attack
+    void gameForLevel_3(int y, int x); // attack
+    void gameForLevel_4(int y, int x); // attack
+    bool MustCase();
 
 };
    
