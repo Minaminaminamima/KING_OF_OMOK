@@ -296,11 +296,7 @@ void _LeeSedol::gameForLevel_2(int y, int x) {
 
 
 }
-
-
-// enyemy sequence num = -505
-// my sequence ~ = - 500
-// 2 2 / 3 1.... = - 400
+ 
 
 void _LeeSedol::gameForLevel_3(int y, int x) {
 

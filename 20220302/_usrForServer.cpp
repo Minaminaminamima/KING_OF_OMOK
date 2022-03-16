@@ -57,7 +57,7 @@ bool _usrForServer::doGame(bool user) {
 
 		/////////////// Client Turn
 		ptrGP->drawWhoseTurn(false);
-		recv(hClientSock, message, BUFSIZE, 0); // wait response (syncronize)
+		recv(hClientSock, message, BUFSIZE, 0);  
 
 		int xx = (int)message[3];
 		int yy = (int)message[4];

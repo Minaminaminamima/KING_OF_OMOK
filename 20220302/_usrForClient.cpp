@@ -44,7 +44,6 @@ bool _usrForClient::doGame(bool user) {
 
 	while (ret < 0) {
 		/////////////// server Turn
-
 		ptrGP->drawWhoseTurn(false);
 		int strLen = recv(hSocket, message, BUFSIZE, 0);  
 		int xx = (int) message[3];

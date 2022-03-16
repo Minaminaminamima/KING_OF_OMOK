@@ -23,8 +23,8 @@ void _Core::gotoxy(int x, int y)
 
 void _Core::showCursor(bool input, int cursor_size) {
     CONSOLE_CURSOR_INFO cursorInfo = { 0, };
-    cursorInfo.bVisible = input; //커서 Visible TRUE(보임) FALSE(숨김)
-    cursorInfo.dwSize = cursor_size; // 꼭....써줘야...먹힘.... (false 여도)
+    cursorInfo.bVisible = input; 
+    cursorInfo.dwSize = cursor_size;  
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
 
